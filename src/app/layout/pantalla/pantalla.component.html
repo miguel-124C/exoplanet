@@ -11,4 +11,6 @@
     <button *ngIf="exoplanets() && exoplanets()!.length > 0" routerLink="/"> Visitar Otro Sistema </button>
     <canvas #canvas id="canvas" style="height: 100%; width: 100%;"></canvas>
 </div>
-<div class="loader" *ngIf="loader"> Cargando Planetas </div>
+<div class="loader" *ngIf="loader">
+    <img src="assets/portal.gif" alt="">
+</div>
