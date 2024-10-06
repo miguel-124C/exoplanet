@@ -3,11 +3,12 @@
         <h1> Sistema {{ systemName }} </h1>
         <p> Planetas: {{ exoplanets()!.length }} </p>
     </div>
-    <!-- <div id="infoPanel" *ngIf="exoplanets()">
-        Nombre: {{ exoplanets()!.pl_name }}
-        Masa: {{ exoplanets()!.pl_masse }}
-        Radio: {{ exoplanets()!.pl_rade }}
-    </div> -->
+    <!-- <ul id="infoPanel" *ngFor="let item of exoplanets()">
+        <li>Nombre: {{ item.pl_name }}</li>
+        <li>Masa: {{ item.pl_masse }}</li>
+        <li>Radio: {{ item.pl_rade }}</li>
+    </ul> -->
+    <button *ngIf="exoplanets() && exoplanets()!.length > 0" routerLink="/"> Visitar Otro Sistema </button>
     <canvas #canvas id="canvas" style="height: 100%; width: 100%;"></canvas>
 </div>
 <div class="loader" *ngIf="loader"> Cargando Planetas </div>

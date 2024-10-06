@@ -1,22 +1,17 @@
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ExoplanetResponse } from 'src/app/interface/response-api.interface';
 import { ApiService } from 'src/app/services/api.service';
 import { getCartesianCoordinates } from 'src/app/utils/calcular-coordenates';
 import * as THREE from 'three';
-
-interface DetallePlanet3d{
-    detalle: ExoplanetResponse,
-    obj3d: THREE.Mesh,
-}
 
 @Component({
     selector: 'app-pantalla',
     templateUrl: './pantalla.component.html',
     standalone: true,
     styleUrls: ['./pantalla.component.css'],
-    imports: [ NgIf ],
+    imports: [ NgIf, NgFor, RouterLink ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PantallaComponent implements OnInit, AfterViewInit {
