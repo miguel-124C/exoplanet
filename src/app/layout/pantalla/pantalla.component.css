@@ -1,0 +1,28 @@
+.contain{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    position: relative;
+
+    .title{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: white;
+    }
+}
+
+.loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: .5;
+    color: white;
+}

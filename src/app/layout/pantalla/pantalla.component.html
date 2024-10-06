@@ -1,0 +1,8 @@
+<div class="contain">
+    <div *ngIf="exoplanets() && exoplanets()!.length > 0" class="title">
+        <h1> Sistema {{ systemName }} </h1>
+        <p> Planetas: {{ exoplanets()!.length }} </p>
+    </div>
+    <canvas #canvas id="canvas" style="height: 100%; width: 100%;"></canvas>
+</div>
+<div class="loader" *ngIf="loader"> Cargando Planetas </div>

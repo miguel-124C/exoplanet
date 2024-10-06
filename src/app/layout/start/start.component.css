@@ -1,0 +1,23 @@
+.contain{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../../assets/fondo-start.jpg');
+    background-size: cover;
+
+    .title-select{
+        display: grid;
+        justify-content: center;
+        padding: 20px;
+
+        h1{
+            background: black;
+            padding: 12px;
+            color: white;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        select{
+            padding: 15px;
+            font-size: 1.3em;
+        }
+    }
+}

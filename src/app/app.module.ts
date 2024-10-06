@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { PantallaComponent } from './pantalla/pantalla.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { StartComponent } from './layout/start/start.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StartComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-
-    PantallaComponent,
+    AppRoutingModule,
+    CommonModule,
   ],
   providers: [
   ],
