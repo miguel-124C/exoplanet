@@ -6,6 +6,11 @@ import { ApiService } from 'src/app/services/api.service';
 import { getCartesianCoordinates } from 'src/app/utils/calcular-coordenates';
 import * as THREE from 'three';
 
+interface DetallePlanet3d{
+    detalle: ExoplanetResponse,
+    obj3d: THREE.Mesh,
+}
+
 @Component({
     selector: 'app-pantalla',
     templateUrl: './pantalla.component.html',
@@ -26,7 +31,6 @@ export class PantallaComponent implements OnInit, AfterViewInit {
 
     public rotationSpeedX: number = 0.01;
     public rotationSpeedY: number = 0.01;
-    public textureFondo = 'assets/estrellas.png'
     public cameraZ: number = 400;
     public fieldOfView: number = 20;
     public nearClippingPlane: number = 1;
@@ -158,10 +162,7 @@ export class PantallaComponent implements OnInit, AfterViewInit {
         // Scene
         this.scene = new THREE.Scene();
         // Cargar la textura de la imagen de fondo
-        const loader = new THREE.TextureLoader();
-        loader.load(this.textureFondo, (texture) => {
-        this.scene.background = texture; // Establecer la imagen como fondo de la escena
-        });
+        this.scene.background = new THREE.Color(0x000000);
 
         this.addPlanet();
 
@@ -177,7 +178,8 @@ export class PantallaComponent implements OnInit, AfterViewInit {
     }
 
     addPlanet(){
-        this.exoplanets()!.forEach(({ dec, ra, pl_orbsmax, pl_rade, pl_name, hostname }, index)=>{
+        this.exoplanets()!.forEach((detalle, index)=>{
+            const { dec, ra, pl_orbsmax, pl_rade, pl_name, hostname, pl_masse } = detalle;
             const baseSegments = 16; // Un número base para los segmentos
 
             // Derivar los segmentos en función del radio del planeta
@@ -201,17 +203,19 @@ export class PantallaComponent implements OnInit, AfterViewInit {
             planet.add(new THREE.LineSegments(edgesGeometry, edgesMaterial));
             planet.position.set(coord.x, coord.y, coord.z);
             this.scene.add( planet );
-
-            this.addStellar( 2, hostname );
+            
+            this.addStellar( 2, detalle );
         });
     }
 
-    addStellar( radio: number, hostname: string ){
+    addStellar( radio: number, detalle: ExoplanetResponse ){
+        const { hostname } = detalle;
         const stellar = this.getSpherGeometry( radio, 20, 20, {color: 0xfff000}, hostname, 0, 0, 0 );
         const edgesGeometry = new THREE.EdgesGeometry(stellar.geometry);
         const edgesMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
         stellar.add(new THREE.LineSegments(edgesGeometry, edgesMaterial));
         stellar.position.set(0, 0, 0);
+
         this.scene.add( stellar );
     }
 

@@ -10,6 +10,14 @@
         left: 10px;
         color: white;
     }
+
+    #infoPanel{
+        color: white;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 10000;
+    }
 }
 
 .loader{
